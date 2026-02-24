@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: api_users
+
+  datasource:
+    url: jdbc:postgresql://localhost:5436/gestaoferias
+    username: postgres
+    password: postgres
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  flyway:
+    enabled: false
