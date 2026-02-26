@@ -20,7 +20,7 @@ public class UsersController {
 
     private final UsersService usersService;
 
-    @PostMapping("/new-user")
+    @PostMapping
     public ResponseEntity<String> registerUser(@Valid @RequestBody UsersCreateDto usersCreateDto){
         usersService.registerUser(usersCreateDto);
 
@@ -45,7 +45,7 @@ public class UsersController {
                 .body("Usuário editado com sucesso!");
     }
 
-    @GetMapping("/all-users")
+    @GetMapping
     public ResponseEntity<List<UsersDto>> getUsers(){
 
         List<UsersDto> usersDtos = usersService.getUsers();
@@ -54,7 +54,7 @@ public class UsersController {
                 .ok(usersDtos);
     }
 
-    @PatchMapping("/{id}/password-update")
+    @PatchMapping("/{id}")
     public ResponseEntity<String> updatePassword(@PathVariable Long id,
                                                  @Valid @RequestBody UserUpdatePasswordDto userUpdatePasswordDto){
 
