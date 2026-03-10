@@ -5,6 +5,8 @@ import gov.api_users.dto.require.UserUpdatePasswordDto;
 import gov.api_users.dto.require.UsersCreateDto;
 import gov.api_users.dto.require.UsersUpdateDto;
 import gov.api_users.dto.response.UsersDto;
+import gov.api_users.exceptions.InsufficientVacationDaysException;
+import gov.api_users.exceptions.InvalidUserStatusException;
 import gov.api_users.mapper.UsersMapper;
 import gov.api_users.model.Users;
 import gov.api_users.repository.UsersRepository;

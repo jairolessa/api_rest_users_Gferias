@@ -41,6 +41,8 @@ public class Users {
 
     private Boolean active = true;
 
+    private Integer saldoFerias = 30;
+
     @OneToMany(mappedBy = "users")
     private List<UserDepartment> userDepartmentList = new ArrayList<>();
 }
