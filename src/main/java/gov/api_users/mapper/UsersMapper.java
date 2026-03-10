@@ -6,6 +6,7 @@ import gov.api_users.dto.require.UsersUpdateDto;
 import gov.api_users.dto.response.UsersDto;
 import gov.api_users.model.Users;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public interface UsersMapper {
 
     UsersDto toDto(Users user);
 
+    @Mapping(target = "saldoFerias", ignore = true)
     void updateToEntity(UsersUpdateDto usersUpdateDto, @MappingTarget Users users);
 
     List<UsersDto> toListDto(List<Users> users);
