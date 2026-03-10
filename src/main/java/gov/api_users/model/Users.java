@@ -41,6 +41,6 @@ public class Users {
 
     private Boolean active = true;
 
-    @ManyToMany
-    private List<Department> departments = new ArrayList<>();
+    @OneToMany(mappedBy = "users")
+    private List<UserDepartment> userDepartmentList = new ArrayList<>();
 }

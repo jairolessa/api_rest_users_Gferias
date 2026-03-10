@@ -23,15 +23,6 @@ public class Department {
     @Column(nullable = false)
     private String departmentName;
 
-    @ManyToMany
-    private List<Users> users = new ArrayList<>();
-
-    @Override
-    public String toString() {
-        return "Department{" +
-                "id=" + id +
-                ", departmentName='" + departmentName + '\'' +
-                ", users=" + users +
-                '}';
-    }
+    @OneToMany(mappedBy = "department")
+    private List<UserDepartment> userDepartmentList = new ArrayList<>();
 }
