@@ -22,6 +22,7 @@ public class UsersController {
 
     @PostMapping
     public ResponseEntity<String> registerUser(@Valid @RequestBody UsersCreateDto usersCreateDto){
+
         usersService.registerUser(usersCreateDto);
 
         return ResponseEntity
@@ -30,9 +31,10 @@ public class UsersController {
     }
 
     @GetMapping("/{id}")
-    public UsersDto getUser(@PathVariable Long id){
-        var user = usersService.getUser(id);
-        return user;
+    public ResponseEntity<UsersDto> getUser(@PathVariable Long id){
+
+        return ResponseEntity
+                .ok(usersService.getUser(id));
     }
 
     @PutMapping("/{id}")
@@ -40,6 +42,7 @@ public class UsersController {
                                       @Valid @RequestBody UsersUpdateDto userUpdate){
 
         usersService.userUpdate(id, userUpdate);
+
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body("Usuário editado com sucesso!");
