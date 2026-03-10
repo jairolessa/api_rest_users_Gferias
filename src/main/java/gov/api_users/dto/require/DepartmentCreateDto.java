@@ -1,6 +1,7 @@
-package gov.api_users.model;
+package gov.api_users.dto.require;
 
-import jakarta.persistence.*;
+import gov.api_users.model.Users;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,24 +14,17 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity
-public class Department {
+public class DepartmentCreateDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false)
+    @NotBlank(message = "O nome do departamento não pode ser vazio!")
     private String departmentName;
 
-    @ManyToMany
     private List<Users> users = new ArrayList<>();
 
     @Override
     public String toString() {
-        return "Department{" +
-                "id=" + id +
-                ", departmentName='" + departmentName + '\'' +
+        return "DepartmentCreateDto{" +
+                "departmentName='" + departmentName + '\'' +
                 ", users=" + users +
                 '}';
     }
