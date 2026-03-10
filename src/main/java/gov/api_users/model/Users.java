@@ -43,4 +43,6 @@ public class Users {
 
     @ManyToMany
     private List<Department> departments = new ArrayList<>();
+
+    private Integer saldoFerias;
 }
