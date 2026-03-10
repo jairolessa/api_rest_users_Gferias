@@ -43,6 +43,6 @@ public class Users {
 
     private Integer saldoFerias = 30;
 
-    @OneToMany(mappedBy = "users")
+    @OneToMany(mappedBy = "user")
     private List<UserDepartment> userDepartmentList = new ArrayList<>();
 }
