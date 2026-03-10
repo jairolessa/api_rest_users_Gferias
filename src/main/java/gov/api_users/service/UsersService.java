@@ -78,4 +78,8 @@ public class UsersService {
         String encryptedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encryptedPassword);
     }
+
+    public List<Users> findAllById(List<Long> id){
+        return usersRepository.findAllById(id);
+    }
 }
