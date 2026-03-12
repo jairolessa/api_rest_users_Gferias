@@ -18,6 +18,4 @@ public class DepartmentCreateDto {
 
     @NotBlank(message = "O nome do departamento não pode ser vazio!")
     private String departmentName;
-
-    private List<Long> users = new ArrayList<>();
 }
