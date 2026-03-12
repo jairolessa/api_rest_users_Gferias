@@ -1,7 +1,12 @@
 package gov.api_users.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 @Entity
 public class UserDepartment {
 
@@ -14,6 +19,6 @@ public class UserDepartment {
     private Users user;
 
     @ManyToOne
-    @JoinColumn(name = "departmenr_id", nullable = false)
+    @JoinColumn(name = "department_id", nullable = false)
     private Department department;
 }
