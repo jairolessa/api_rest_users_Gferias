@@ -3,6 +3,7 @@ package gov.api_users.service;
 import gov.api_users.dto.require.DepartmentCreateDto;
 import gov.api_users.dto.require.DepartmentUpdateListUsersDto;
 import gov.api_users.dto.response.DepartmentDto;
+import gov.api_users.exceptions.ResourceNotFoundException;
 import gov.api_users.mapper.DepartmentMapper;
 import gov.api_users.model.Department;
 import gov.api_users.model.Users;
@@ -32,18 +33,22 @@ public class DepartmentsService {
 
         Department department = getDepartmentById(id);
 
-        return departmentMapper.toResponseDto(department);
+        return departmentMapper.toDto(department);
     }
 
     public List<Department> getDepartments(){
         return departmentsRepository.findAll();
     }
 
+    public List<Department> getdepartmentsByIds(List<Long> ids){
+        return departmentsRepository.findAllById(ids);
+    }
+
     private Department getDepartmentById(Long id){
         Optional<Department> department = departmentsRepository.findById(id);
 
         if(department.isEmpty()){
-            throw new RuntimeException("Departamento não encontrado!");
+            throw new ResourceNotFoundException("Departamento não encontrado!");
         }
 
         return department.get();
