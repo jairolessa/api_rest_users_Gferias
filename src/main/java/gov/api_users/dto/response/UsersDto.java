@@ -14,7 +14,6 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 public class UsersDto {
 
     private Long id;
@@ -29,5 +28,6 @@ public class UsersDto {
     private Role role;
 
     private Boolean active;
-    private List<Department> departments = new ArrayList<>();
+
+    private List<DepartmentSimpleDto> departmentsList = new ArrayList<>();
 }

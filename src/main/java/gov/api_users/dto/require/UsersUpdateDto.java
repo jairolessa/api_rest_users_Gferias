@@ -36,7 +36,4 @@ public class UsersUpdateDto {
 
     @NotNull(message = "O Status não pode ser vazio!")
     private Boolean active;
-    private List<Department> departments = new ArrayList<>();
-
-    private Integer diasSolicitados;
 }

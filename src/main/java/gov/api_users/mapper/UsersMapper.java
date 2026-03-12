@@ -14,11 +14,14 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface UsersMapper {
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "userDepartmentList", ignore = true)
     Users toEntity (UsersCreateDto usersCreateDto);
 
     UsersDto toDto(Users user);
 
-    @Mapping(target = "saldoFerias", ignore = true)
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "userDepartmentList", ignore = true)
     void updateToEntity(UsersUpdateDto usersUpdateDto, @MappingTarget Users users);
 
     List<UsersDto> toListDto(List<Users> users);

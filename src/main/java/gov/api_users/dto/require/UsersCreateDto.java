@@ -2,6 +2,7 @@ package gov.api_users.dto.require;
 
 import gov.api_users.model.Department;
 import gov.api_users.model.Role;
+import gov.api_users.model.UserDepartment;
 import gov.api_users.model.UserType;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -47,5 +48,4 @@ public class UsersCreateDto {
 
     @NotNull(message = "O status não pode ser vazio!")
     private Boolean active = true;
-    private List<Department> departments = new ArrayList<>();
 }

@@ -10,7 +10,6 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 @Entity
 @Table(name = "users_table")
 public class Users {
@@ -40,8 +39,6 @@ public class Users {
     private Role role;
 
     private Boolean active = true;
-
-    private Integer saldoFerias = 30;
 
     @OneToMany(mappedBy = "user")
     private List<UserDepartment> userDepartmentList = new ArrayList<>();

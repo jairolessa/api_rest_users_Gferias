@@ -1,12 +1,11 @@
 package gov.api_users.service;
 
-import gov.api_users.controller.exceptions.ResourceAlreadyExistsException;
 import gov.api_users.dto.require.UserUpdatePasswordDto;
 import gov.api_users.dto.require.UsersCreateDto;
 import gov.api_users.dto.require.UsersUpdateDto;
 import gov.api_users.dto.response.UsersDto;
-import gov.api_users.exceptions.InsufficientVacationDaysException;
-import gov.api_users.exceptions.InvalidUserStatusException;
+import gov.api_users.exceptions.ResourceAlreadyExistsException;
+import gov.api_users.exceptions.ResourceNotFoundException;
 import gov.api_users.mapper.UsersMapper;
 import gov.api_users.model.Users;
 import gov.api_users.repository.UsersRepository;
@@ -29,7 +28,7 @@ public class UsersService {
     public void registerUser(UsersCreateDto usersCreateDto){
 
         if(usersRepository.findByCpf(usersCreateDto.getCpf()).isPresent()){
-            throw new RuntimeException("Usuário já existe!");
+            throw new ResourceAlreadyExistsException("Usuário já existe!");
         }
         Users entity = usersMapper.toEntity(usersCreateDto);
         this.setPasswordEncoder(entity);
@@ -41,22 +40,9 @@ public class UsersService {
         return usersMapper.toDto(user);
     }
 
-    // MANTER APENAS ESTA VERSÃO (A antiga foi removida daqui)
+
     public void userUpdate(Long id, UsersUpdateDto usersUpdateDto) {
         Users user = this.getUserById(id);
-
-        // REGRA NOVA: Se o usuário estiver inativo, bloqueia a edição
-        if (user.getActive() == null || !user.getActive()) {
-            throw new InvalidUserStatusException("Não é possível alterar dados de um usuário inativo!");
-        }
-
-        int solicitados = (usersUpdateDto.getDiasSolicitados() == null) ? 0 : usersUpdateDto.getDiasSolicitados();
-        int saldoDisponivel = (user.getSaldoFerias() == null) ? 0 : user.getSaldoFerias();
-
-        if (solicitados > saldoDisponivel) {
-            throw new InsufficientVacationDaysException("Saldo insuficiente!");
-        }
-
         usersMapper.updateToEntity(usersUpdateDto, user);
         usersRepository.save(user);
     }
@@ -75,17 +61,13 @@ public class UsersService {
         usersRepository.save(user);
     }
 
-    private Users getUserById(Long id) {
+    public Users getUserById(Long id) {
         return usersRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, "Usuário não encontrado!"
-                ));
+                .orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado!"));
     }
 
     private void setPasswordEncoder(Users user) {
         String encryptedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encryptedPassword);
     }
-
-
 }
