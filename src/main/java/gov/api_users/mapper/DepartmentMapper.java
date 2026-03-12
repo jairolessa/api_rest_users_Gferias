@@ -4,13 +4,14 @@ import gov.api_users.dto.require.DepartmentCreateDto;
 import gov.api_users.dto.response.DepartmentDto;
 import gov.api_users.model.Department;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface DepartmentMapper {
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "userDepartmentList", ignore = true)
     Department toEntity(DepartmentCreateDto departmentCreateDto);
 
-    DepartmentCreateDto toDto(Department department);
-
-    DepartmentDto toResponseDto(Department department);
+    DepartmentDto toDto(Department department);
 }
