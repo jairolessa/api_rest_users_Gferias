@@ -1,6 +1,5 @@
 package gov.api_users.dto.response;
 
-import gov.api_users.model.Department;
 import gov.api_users.model.Role;
 import gov.api_users.model.UserType;
 import jakarta.persistence.EnumType;
@@ -29,5 +28,5 @@ public class UsersDto {
 
     private Boolean active;
 
-    private List<DepartmentSimpleDto> departmentsList = new ArrayList<>();
+    private List<DepartmentSimpleDto> departments = new ArrayList<>();
 }

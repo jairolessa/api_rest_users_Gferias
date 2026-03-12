@@ -6,12 +6,17 @@ import gov.api_users.model.Department;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring")
+import java.util.List;
+
+@Mapper(componentModel = "spring", uses = UserDepartmentMapper.class)
 public interface DepartmentMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "userDepartmentList", ignore = true)
     Department toEntity(DepartmentCreateDto departmentCreateDto);
 
+    @Mapping(target = "users", source = "userDepartmentList")
     DepartmentDto toDto(Department department);
+
+    List<DepartmentDto> toListDto(List<Department> departmentList);
 }

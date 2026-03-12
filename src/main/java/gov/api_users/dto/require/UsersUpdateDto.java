@@ -1,6 +1,5 @@
 package gov.api_users.dto.require;
 
-import gov.api_users.model.Department;
 import gov.api_users.model.Role;
 import gov.api_users.model.UserType;
 import jakarta.persistence.EnumType;
@@ -11,8 +10,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import java.util.ArrayList;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor

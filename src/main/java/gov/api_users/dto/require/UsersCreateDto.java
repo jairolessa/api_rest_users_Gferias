@@ -1,8 +1,6 @@
 package gov.api_users.dto.require;
 
-import gov.api_users.model.Department;
 import gov.api_users.model.Role;
-import gov.api_users.model.UserDepartment;
 import gov.api_users.model.UserType;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -13,9 +11,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.br.CPF;
-import java.util.ArrayList;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor

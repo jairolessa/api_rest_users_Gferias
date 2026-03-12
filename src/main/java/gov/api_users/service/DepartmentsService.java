@@ -1,17 +1,13 @@
 package gov.api_users.service;
 
 import gov.api_users.dto.require.DepartmentCreateDto;
-import gov.api_users.dto.require.DepartmentUpdateListUsersDto;
 import gov.api_users.dto.response.DepartmentDto;
 import gov.api_users.exceptions.ResourceNotFoundException;
 import gov.api_users.mapper.DepartmentMapper;
 import gov.api_users.model.Department;
-import gov.api_users.model.Users;
 import gov.api_users.repository.DepartmentsRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,12 +28,19 @@ public class DepartmentsService {
     public DepartmentDto getDepartment(Long id){
 
         Department department = getDepartmentById(id);
-
+        System.out.println(department.getUserDepartmentList()
+                .get(0)
+                .getUser()
+                .getFullName()
+        );
         return departmentMapper.toDto(department);
     }
 
-    public List<Department> getDepartments(){
-        return departmentsRepository.findAll();
+    public List<DepartmentDto> getDepartments(){
+
+        List<Department> departments = departmentsRepository.findAll();
+
+        return departmentMapper.toListDto(departments);
     }
 
     public List<Department> getdepartmentsByIds(List<Long> ids){

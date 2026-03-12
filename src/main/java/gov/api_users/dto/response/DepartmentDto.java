@@ -1,6 +1,5 @@
 package gov.api_users.dto.response;
 
-import gov.api_users.model.UserDepartment;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,5 +16,5 @@ public class DepartmentDto {
 
     private Long id;
     private String departmentName;
-    private List<UsersSimpleDto> usersList = new ArrayList<>();
+    private List<UsersSimpleDto> users = new ArrayList<>();
 }

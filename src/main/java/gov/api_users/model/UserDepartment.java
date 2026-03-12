@@ -8,6 +8,11 @@ import lombok.*;
 @Getter
 @Setter
 @Entity
+@Table(
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = {"user_id","department_id"})
+        }
+)
 public class UserDepartment {
 
     @Id
