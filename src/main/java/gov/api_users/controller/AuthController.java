@@ -25,7 +25,6 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<TokenResponseDto> register(@RequestBody @Valid UsersCreateDto dto){
-        System.out.println("Entrou no controller");
         return ResponseEntity.ok(authService.register(dto));
     }
 
