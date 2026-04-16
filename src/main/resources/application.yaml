@@ -1,20 +1,20 @@
 server:
-  port: 8080
+  port: ${SERVER_PORT}
 
 spring:
   application:
     name: api_users
 
   datasource:
-    url: jdbc:h2:mem:testdb
+    url: ${DATA_SOUTCE_URL}
     driver-class-name: org.h2.Driver
-    username: sa
+    username: ${DATA_SOURSE_USERNAME}
     password:
 
   h2:
     console:
-      enable: true
-      path: /h2-console
+      enabled: ${H2_ENABLED}
+      path: ${H2_PATH}
 
   jpa:
     hibernate:
@@ -25,13 +25,13 @@ spring:
     enabled: ${FLYWAY_ENABLE}
 
   rabbitmq:
-    host: jaragua.lmq.cloudamqp.com
-    port: 5671
-    username: hddykhdy
-    password: plJM7Tp8ins6MNMPmTQ-yyLMSGEQZ_sJ
-    virtual-host: hddykhdy
+    host: ${RABBITMQ_HOST}
+    port: ${RABBITMQ_PORT}
+    username: ${RABBITMQ_USERNAME}
+    password: ${RABBITMQ_PASSWORD}
+    virtual-host: ${RABBITMQ_VIRTUAL_HOST}
     ssl:
-      enabled: true
+      enabled: ${RABBITMQ_SSL_ENABLED}
 
 jwt:
   secret: ${JWT_SECRET:Y2hhbmNlLXRoaXMtaW4tcHJvZHVjdGlvbi1hZGl0ZWMtc2VjcmV0LWtleS0yMDI2LXNwcmluZy1ib290}
