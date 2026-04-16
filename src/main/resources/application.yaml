@@ -24,6 +24,15 @@ spring:
   flyway:
     enabled: ${FLYWAY_ENABLE}
 
+  rabbitmq:
+    host: jaragua.lmq.cloudamqp.com
+    port: 5671
+    username: hddykhdy
+    password: plJM7Tp8ins6MNMPmTQ-yyLMSGEQZ_sJ
+    virtual-host: hddykhdy
+    ssl:
+      enabled: true
+
 jwt:
   secret: ${JWT_SECRET:Y2hhbmNlLXRoaXMtaW4tcHJvZHVjdGlvbi1hZGl0ZWMtc2VjcmV0LWtleS0yMDI2LXNwcmluZy1ib290}
   expiration: ${JWT_EXPIRATION:86400000}
