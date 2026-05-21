@@ -24,6 +24,7 @@ public class UsersService {
     private final UsersRepository usersRepository;
     private final PasswordEncoder passwordEncoder;
     private final UsersMapper usersMapper;
+    private final UserEventPublisherService userEventPublisherService;
 
     public void registerUser(UsersCreateDto usersCreateDto){
 
@@ -33,6 +34,7 @@ public class UsersService {
         Users entity = usersMapper.toEntity(usersCreateDto);
         this.setPasswordEncoder(entity);
         usersRepository.save(entity);
+        userEventPublisherService.publishUserCreated(entity);
     }
 
     public UsersDto getUser(Long id) {
@@ -70,4 +72,6 @@ public class UsersService {
         String encryptedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encryptedPassword);
     }
+
+
 }

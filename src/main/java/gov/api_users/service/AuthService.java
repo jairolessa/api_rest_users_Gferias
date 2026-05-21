@@ -20,11 +20,13 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final UsersMapper usersMapper;
+    private final UserEventPublisherService userEventPublisherService;
 
     public TokenResponseDto register(UsersCreateDto dto){
         Users user = usersMapper.toEntity(dto);
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
-        usersRepository.save(user);
+        Users userSaved = usersRepository.save(user);
+        userEventPublisherService.publishUserCreated(userSaved);
 
         String token = jwtService.generateToken(user.getCpf(), user.getRole().toString());
         return new TokenResponseDto(token, "Bearer ");
