@@ -19,18 +19,6 @@ public class AuthService {
     private final UsersRepository usersRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
-    private final UsersMapper usersMapper;
-    private final UserEventPublisherService userEventPublisherService;
-
-    public TokenResponseDto register(UsersCreateDto dto){
-        Users user = usersMapper.toEntity(dto);
-        user.setPassword(passwordEncoder.encode(dto.getPassword()));
-        Users userSaved = usersRepository.save(user);
-        userEventPublisherService.publishUserCreated(userSaved);
-
-        String token = jwtService.generateToken(user.getCpf(), user.getRole().toString());
-        return new TokenResponseDto(token, "Bearer ");
-    }
 
     public TokenResponseDto login(LoginRequestDto dto) {
         Users user = usersRepository.findByCpf(dto.cpf())
